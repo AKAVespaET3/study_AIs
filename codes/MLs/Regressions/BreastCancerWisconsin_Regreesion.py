@@ -9,5 +9,5 @@ with open('datasets/BreastCancerWisconsinDataSet.pkl', 'rb') as regression_file 
     loaded_model = pickle.load(regression_file)
     input_labels = [[texture_mean, perimeter_mean]] # 학습했던 설명변수 형식
     result_predict = loaded_model.predict(input_labels)
-    print('Predict radius_meean Result : {}'.format(result_predict))    
+    print('Predict radius_mean Result : {}'.format(result_predict))    
     pass
