@@ -1,8 +1,17 @@
 # conda install -c conda-forge fastapi uvicorn
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
+# No 'Access-Control-Allow-Origin'
+# CORS 설정
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # 실제 운영 환경에서는 접근 가능한 도메인만 허용하는 것이 좋습니다.
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/")
 async def root():
@@ -16,8 +25,8 @@ import pickle
 def mlmodelwithregression(data:dict) : 
     print('data with dict {}'.format(data))
     # data dict to 변수 활당
-    texture_mean = data['texture_mean']
-    perimeter_mean = data['perimeter_mean']
+    texture_mean = float(data['texture_mean'])
+    perimeter_mean = float(data['perimeter_mean'])
 
     # pkl 파일 존재 확인 코드 필요
 
